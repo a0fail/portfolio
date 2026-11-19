@@ -289,3 +289,41 @@ footer > :last-child { justify-self: end; text-align: right; }
   overflow: hidden;
 }
 
+
+/* Центрированная навигация на мобильных */
+@media (max-width: 620px) {
+  .site-header {
+    justify-content: center;
+  }
+
+  .site-header nav {
+    width: max-content;
+    max-width: calc(100% - 24px);
+    margin-inline: auto;
+    justify-content: center;
+    gap: clamp(4px, 1.8vw, 12px);
+  }
+
+  .nav-label {
+    font-size: clamp(0.92rem, 4.4vw, 1.18rem);
+  }
+
+  .site-header nav a {
+    padding: 10px 0;
+  }
+}
+
+.name-caption {
+  line-height: 1.15;
+}
+
+.name-caption {
+  width: max-content;
+  max-width: 100%;
+  text-align: right;
+  line-height: 1.2;
+}
+
+.name-caption > span {
+  display: block;
+}
