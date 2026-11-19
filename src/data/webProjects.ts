@@ -77,7 +77,7 @@ export const games: Game[] = [
   { id: 'sector-503', title: 'Sector 503', description: 'Браузерная игра, вдохновленная старыми приставками и играми, типа Doom и Wolfenstein 3D.\nОсвободи сервер от оков вирусной деспотии. Уничтожь киберугрозы во имя материнской платы, оперативки и святой видюхи!', tags: ['Browser game', 'Жанр: симулятор ретро-приставки'], images: [
   {
     "id": "sector",
-    "src": "assets/games/sector-503/sector.gif",
+    "src": "assets/games/sector-503/sector.webp",
     "alt": "Геймплей"
   },
   {
@@ -100,7 +100,7 @@ export const games: Game[] = [
   "images": [
     {
       "id": "sector_trojan",
-      "src": "assets/games/sector-503/sector_trojan.png",
+      "src": "assets/games/sector-503/sector_trojan.webp",
       "alt": "Trojan — от наброска к спрайту"
     },
     {
@@ -110,7 +110,7 @@ export const games: Game[] = [
     },
     {
       "id": "sector_worm",
-      "src": "assets/games/sector-503/sector_worm.png",
+      "src": "assets/games/sector-503/sector_worm.webp",
       "alt": "Worm — от наброска к спрайту"
     }
   ]
@@ -133,7 +133,7 @@ export const profkom = {
       },
       "after": {
         "id": "after",
-        "src": "assets/web-design/profkom-redesign/after.png",
+        "src": "assets/web-design/profkom-redesign/after.webp",
         "alt": "Страница сообщества после редизайна",
         "caption": "Страница сообщества после редизайна"
       }
@@ -150,7 +150,7 @@ export const profkom = {
       },
       "after": {
         "id": "logo_new",
-        "src": "assets/web-design/profkom-redesign/logo_new.png",
+        "src": "assets/web-design/profkom-redesign/logo_new.webp",
         "alt": "Новый логотип Профкома ВМК",
         "caption": "Новый логотип Профкома ВМК"
       }
@@ -173,7 +173,7 @@ export const initiation = {
   "images": [
     {
       "id": "head",
-      "src": "assets/web-design/initiation/head.png",
+      "src": "assets/web-design/initiation/head.webp",
       "alt": "Шапка сообщества Посвящения",
       "caption": "Шапка сообщества Посвящения"
     },

@@ -264,3 +264,28 @@ footer > :last-child { justify-self: end; text-align: right; }
   .about-section { --about-wave-gap: 64px; }
   .art-category[data-category="other"] .gallery { grid-template-columns: 1fr; }
 }
+
+/* Отключаем старые разделители через CSS-маски */
+:is(
+  .about-section,
+  .areas article,
+  .project,
+  .project-details,
+  .art-category,
+  footer
+)::before {
+  display: none;
+}
+
+/* Новые SVG-разделители */
+.section-divider-wave {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  color: var(--line);
+  pointer-events: none;
+  overflow: hidden;
+}
+

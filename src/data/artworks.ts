@@ -17,14 +17,14 @@ export const artworks: ArtCategory[] = [
             "images": [
               {
                 "id": "panel_house",
-                "src": "assets/digital-art/pet collages/panel_house.png",
+                "src": "assets/digital-art/pet collages/panel_house.webp",
                 "alt": "Панельный дом",
                 "caption": "\"I am not human anymore\" - создано благодаря одноименной песне, игравшей в моих наушниках на репите той осенью, пока я плавал в легкой диссоциации и тяжелом выгорании",
                 "captionAccent": "\"I am not human anymore\""
               },
               {
                 "id": "triad",
-                "src": "assets/digital-art/pet collages/triad.png",
+                "src": "assets/digital-art/pet collages/triad.webp",
                 "alt": "Триада",
                 "caption": "\"Триада\" - порыв чувств и эмоций после просмотра серии \"24/7\" из сериала Sandman. Использовал свое фото картины Савинского с выставки в музее русского импрессионизма, одну из моих любимых картин Гогена и пронизывающего взглядом кабанелевского ангела",
                 "captionAccent": "\"Триада\""
@@ -52,13 +52,13 @@ export const artworks: ArtCategory[] = [
             "images": [
               {
                 "id": "afisha",
-                "src": "assets/digital-art/faculty_day/afisha.png",
+                "src": "assets/digital-art/faculty_day/afisha.webp",
                 "alt": "Афиша",
                 "caption": "Афиша"
               },
               {
                 "id": "shopper",
-                "src": "assets/digital-art/faculty_day/shopper.png",
+                "src": "assets/digital-art/faculty_day/shopper.webp",
                 "alt": "Шоппер",
                 "caption": "Шоппер",
                 "background": false,
@@ -68,7 +68,7 @@ export const artworks: ArtCategory[] = [
               },
               {
                 "id": "badge",
-                "src": "assets/digital-art/faculty_day/badge.png",
+                "src": "assets/digital-art/faculty_day/badge.webp",
                 "alt": "Бейджи организаторов",
                 "caption": "Бейджи организаторов",
                 "background": false,
@@ -159,7 +159,7 @@ export const artworks: ArtCategory[] = [
             "images": [
               {
                 "id": "first_tshirt_line",
-                "src": "assets/digital-art/tshirts_viezd_2026/first_tshirt_line.PNG",
+                "src": "assets/digital-art/tshirts_viezd_2026/first_tshirt_line.webp",
                 "alt": "Команда Архивариусов — лайн",
                 "stage": "1 · Лайн",
                 "background": false,
@@ -171,7 +171,7 @@ export const artworks: ArtCategory[] = [
                 "background": true,
                 "width": 3508,
                 "height": 4961,
-                "src": "assets/digital-art/tshirts_viezd_2026/first_tshirt.png",
+                "src": "assets/digital-art/tshirts_viezd_2026/first_tshirt.webp",
                 "alt": "Команда Архивариусов — финал",
                 "stage": "2 · Финал"
               }
@@ -192,7 +192,7 @@ export const artworks: ArtCategory[] = [
               },
               {
                 "id": "second_tshirt_final",
-                "src": "assets/digital-art/tshirts_viezd_2026/second_tshirt_final.png",
+                "src": "assets/digital-art/tshirts_viezd_2026/second_tshirt_final.webp",
                 "alt": "Команда Астрономов-Астрологов — финал",
                 "stage": "2 · Финал"
               }
@@ -213,7 +213,7 @@ export const artworks: ArtCategory[] = [
               },
               {
                 "id": "third_tshirt_final",
-                "src": "assets/digital-art/tshirts_viezd_2026/third_tshirt_final.png",
+                "src": "assets/digital-art/tshirts_viezd_2026/third_tshirt_final.webp",
                 "alt": "Команда Корсаров — финал",
                 "stage": "2 · Финал"
               }
@@ -240,7 +240,7 @@ export const artworks: ArtCategory[] = [
             "images": [
               {
                 "id": "cinema2022",
-                "src": "assets/digital-art/vector/cinema2022.png",
+                "src": "assets/digital-art/vector/cinema2022.webp",
                 "alt": "Афиша кинопоказа · 2022",
                 "caption": "Афиша кинопоказа · 2022",
                 "background": false,

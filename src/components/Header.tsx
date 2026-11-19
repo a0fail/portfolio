@@ -24,16 +24,123 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
     let lastTime = 0;
     let lastScroll = 0;
 
-    const draw = () => {
-      wavePattern.current?.setAttribute('patternTransform', `translate(${phase % 160} 0)`);
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="20"><path d="M0 8Q40 ${8-amplitude*2} 80 8T160 8" fill="none" stroke="black" stroke-width="2"/></svg>`;
-      document.documentElement.style.setProperty('--divider-wave', `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
-      document.documentElement.style.setProperty('--wave-phase', `${phase % 160}px`);
-      document.querySelectorAll<HTMLElement>('.about-section, .areas article, .project, .project-details, .art-category, footer').forEach(element => {
-        element.style.setProperty('--wave-left', `${element.getBoundingClientRect().left}px`);
-      });
-      wavePath.current?.setAttribute('d', `M0 0H160V8Q120 ${8 + amplitude * 2} 80 8T0 8Z`);
+    // Создаём SVG-маску разделителей только один раз
+    // const dividerSvg = `
+    //   <svg xmlns="http://www.w3.org/2000/svg"
+    //       width="160" height="20">
+    //     <path
+    //       d="M0 8 Q40 0 80 8 T160 8"
+    //       fill="none"
+    //       stroke="black"
+    //       stroke-width="2"
+    //     />
+    //   </svg>
+    // `;
+
+    // document.documentElement.style.setProperty(
+    //   '--divider-wave',
+    //   `url("data:image/svg+xml,${encodeURIComponent(dividerSvg)}")`
+    // );
+
+    const dividerSelector =
+      '.about-section, .areas article, .project, .art-category, footer';
+
+    let dividerId = 0;
+
+    const drawDividers = () => {
+      document.querySelectorAll<HTMLElement>(dividerSelector)
+        .forEach(element => {
+          // Не нарушаем структуру footer:
+          // там используются CSS-селекторы :nth-child.
+          const mount = element.tagName === 'FOOTER'
+            ? element.firstElementChild
+            : element;
+
+          if (!mount) return;
+
+          let svg = mount.querySelector<SVGSVGElement>(
+            ':scope > svg.section-divider-wave'
+          );
+
+          if (!svg) {
+            svg = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'svg'
+            );
+
+            svg.classList.add('section-divider-wave');
+            svg.setAttribute('aria-hidden', 'true');
+
+            const id = `section-wave-${++dividerId}`;
+
+            svg.innerHTML = `
+              <defs>
+                <pattern
+                  id="${id}"
+                  width="160"
+                  height="20"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path fill="currentColor" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="20"
+                    fill="url(#${id})" />
+            `;
+
+            mount.prepend(svg);
+          }
+
+          // svg.querySelector('path')?.setAttribute(
+          //   'd',
+          //   `M0 8Q40 ${8 - amplitude * 2} 80 8T160 8`
+          // );
+
+          svg.querySelector('path')?.setAttribute(
+            'd',
+            `M0 8
+            Q40 ${8 - amplitude * 2} 80 8
+            T160 8
+            L160 10
+            Q120 ${10 + amplitude * 2} 80 10
+            T0 10 Z`
+          );
+
+
+          svg.querySelector('pattern')?.setAttribute(
+            'patternTransform',
+            `translate(${(phase - element.getBoundingClientRect().left) % 160} 0)`
+          );
+        });
     };
+
+    // const draw = () => {
+    //   wavePattern.current?.setAttribute('patternTransform', `translate(${phase % 160} 0)`);
+    //   // const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="20"><path d="M0 8Q40 ${8-amplitude*2} 80 8T160 8" fill="none" stroke="black" stroke-width="2"/></svg>`;
+    //   // document.documentElement.style.setProperty('--divider-wave', `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
+    //   document.documentElement.style.setProperty('--wave-phase', `${phase % 160}px`);
+    //   document.querySelectorAll<HTMLElement>('.about-section, .areas article, .project, .project-details, .art-category, footer').forEach(element => {
+    //     element.style.setProperty('--wave-left', `${element.getBoundingClientRect().left}px`);
+    //   });
+    //   wavePath.current?.setAttribute('d', `M0 0H160V8Q120 ${8 + amplitude * 2} 80 8T0 8Z`);
+    // };
+
+    const draw = () => {
+      wavePattern.current?.setAttribute(
+        'patternTransform',
+        `translate(${phase % 160} 0)`
+      );
+
+      // Меню: оставляем оригинальную форму и амплитуду
+      wavePath.current?.setAttribute(
+        'd',
+        `M0 0H160V8Q120 ${8 + amplitude * 2} 80 8T0 8Z`
+      );
+
+      // Разделители: точно такая же геометрия
+      drawDividers();
+    };
+
     const tick = (now: number) => {
       const elapsed = Math.min(now - (lastTime || now - 16), 50);
       lastTime = now;
@@ -41,6 +148,18 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
       phase += (target - phase) * ease;
       const desiredAmplitude = now - lastScroll < 120 ? 8 : 5;
       amplitude += (desiredAmplitude - amplitude) * ease;
+      const main = document.querySelector('main');
+
+      // const observer = new MutationObserver(() => {
+      //   draw();
+      // });
+
+      // if (main) {
+      //   observer.observe(main, {
+      //     childList: true,
+      //     subtree: true
+      //   });
+      // }
       draw();
       if (Math.abs(target - phase) > .02 || Math.abs(desiredAmplitude - amplitude) > .02 || now - lastScroll < 120) {
         frame = requestAnimationFrame(tick);
@@ -60,10 +179,40 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
       amplitude = 5;
       draw();
     };
+
+    const main = document.querySelector('main');
+
+    const observer = new MutationObserver(() => {
+      draw();
+    });
+
+    if (main) {
+      observer.observe(main, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+    draw();
+
+    window.addEventListener('scroll', onScroll, {
+      passive: true
+    });
+
+    reducedMotion.addEventListener(
+      'change',
+      onMotionChange
+    );
+
     draw();
     window.addEventListener('scroll', onScroll, { passive: true });
     reducedMotion.addEventListener('change', onMotionChange);
     return () => {
+      observer.disconnect();
+
+      document
+        .querySelectorAll('.section-divider-wave')
+        .forEach(element => element.remove());
       cancelAnimationFrame(frame);
       window.removeEventListener('scroll', onScroll);
       reducedMotion.removeEventListener('change', onMotionChange);
