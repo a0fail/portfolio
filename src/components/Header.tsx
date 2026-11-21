@@ -4,6 +4,12 @@ import { siteText } from '../data/siteText';
 
 interface Route { id: string; label: string }
 
+const mobileLabels: Record<string, string> = {
+  home: 'Home',
+  'web-design': 'Web',
+  'digital-art': 'Art',
+};
+
 export function Header({ routes, page }: { routes: Route[]; page: string }) {
   const [departing, setDeparting] = useState<string | null>(null);
   const overlay = useRef<HTMLDivElement>(null);
@@ -24,23 +30,7 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
     let lastTime = 0;
     let lastScroll = 0;
 
-    // Создаём SVG-маску разделителей только один раз
-    // const dividerSvg = `
-    //   <svg xmlns="http://www.w3.org/2000/svg"
-    //       width="160" height="20">
-    //     <path
-    //       d="M0 8 Q40 0 80 8 T160 8"
-    //       fill="none"
-    //       stroke="black"
-    //       stroke-width="2"
-    //     />
-    //   </svg>
-    // `;
-
-    // document.documentElement.style.setProperty(
-    //   '--divider-wave',
-    //   `url("data:image/svg+xml,${encodeURIComponent(dividerSvg)}")`
-    // );
+    
 
     const dividerSelector =
       '.about-section, .areas article, .project, .art-category, footer';
@@ -91,11 +81,6 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
             mount.prepend(svg);
           }
 
-          // svg.querySelector('path')?.setAttribute(
-          //   'd',
-          //   `M0 8Q40 ${8 - amplitude * 2} 80 8T160 8`
-          // );
-
           svg.querySelector('path')?.setAttribute(
             'd',
             `M0 8
@@ -113,17 +98,6 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
           );
         });
     };
-
-    // const draw = () => {
-    //   wavePattern.current?.setAttribute('patternTransform', `translate(${phase % 160} 0)`);
-    //   // const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="20"><path d="M0 8Q40 ${8-amplitude*2} 80 8T160 8" fill="none" stroke="black" stroke-width="2"/></svg>`;
-    //   // document.documentElement.style.setProperty('--divider-wave', `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
-    //   document.documentElement.style.setProperty('--wave-phase', `${phase % 160}px`);
-    //   document.querySelectorAll<HTMLElement>('.about-section, .areas article, .project, .project-details, .art-category, footer').forEach(element => {
-    //     element.style.setProperty('--wave-left', `${element.getBoundingClientRect().left}px`);
-    //   });
-    //   wavePath.current?.setAttribute('d', `M0 0H160V8Q120 ${8 + amplitude * 2} 80 8T0 8Z`);
-    // };
 
     const draw = () => {
       wavePattern.current?.setAttribute(
@@ -150,16 +124,6 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
       amplitude += (desiredAmplitude - amplitude) * ease;
       const main = document.querySelector('main');
 
-      // const observer = new MutationObserver(() => {
-      //   draw();
-      // });
-
-      // if (main) {
-      //   observer.observe(main, {
-      //     childList: true,
-      //     subtree: true
-      //   });
-      // }
       draw();
       if (Math.abs(target - phase) > .02 || Math.abs(desiredAmplitude - amplitude) > .02 || now - lastScroll < 120) {
         frame = requestAnimationFrame(tick);
@@ -274,8 +238,21 @@ export function Header({ routes, page }: { routes: Route[]; page: string }) {
           className={departing === route.id ? 'is-departing' : undefined}
           onClick={event => void navigate(event, route)}>
           <span className="nav-label">
-            <span className="nav-text-shadow">{route.label}</span>
-            <span className="nav-text-filled" aria-hidden="true">{route.label}</span>
+            
+          <span className="nav-text-shadow">
+            <span className="nav-full-label">{route.label}</span>
+            <span className="nav-short-label">
+              {mobileLabels[route.id] ?? route.label}
+            </span>
+          </span>
+
+          <span className="nav-text-filled" aria-hidden="true">
+            <span className="nav-full-label">{route.label}</span>
+            <span className="nav-short-label">
+              {mobileLabels[route.id] ?? route.label}
+            </span>
+          </span>
+
             <span className="nav-water" aria-hidden="true">
               <span className="water-line"/>
             </span>
