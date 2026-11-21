@@ -435,10 +435,88 @@ footer > :last-child { justify-self: end; text-align: right; }
   }
 
   .site-header nav {
-    gap: clamp(22px, 5.5vw, 38px);
+    gap: clamp(25px, 6vw, 45px);
   }
 
   .water-line {
     height: 3px;
+  }
+}
+
+
+/* Навигация на широких смартфонах */
+@media (min-width: 400px) and (max-width: 620px) {
+  .site-header {
+    min-height: 108px;
+    padding-top: 20px;
+    padding-bottom: 23px;
+  }
+
+  .site-header nav {
+    gap: clamp(32px, 8vw, 45px); 
+  }
+
+  .site-header nav a {
+    min-height: 60px;
+    padding: 9px 0;
+  }
+
+  .nav-label {
+    font-size: clamp(1.8rem, 7.5vw, 2.125rem);
+  }
+
+  .nav-water {
+    top: calc(100% + 7px);
+  }
+}
+
+
+
+/* Фон за пределами страницы — цвет шапки */
+html {
+  background-color: var(--surface);
+  overscroll-behavior-y: auto;
+}
+
+/* Видимая страница — исходный цвет */
+body {
+  background-color: #1d1b27;
+  min-height: 100vh;
+  overscroll-behavior-y: auto;
+}
+
+
+/* Даём декоративным буквам место за границами текста */
+.nav-text-shadow {
+  clip-path: inset(-0.2em -0.15em -0.2em -0.15em);
+}
+
+.nav-text-filled {
+  clip-path: inset(100% -0.15em -0.2em -0.15em);
+}
+
+.site-header nav a:is(
+  [aria-current="page"],
+  :focus-visible,
+  .is-departing
+) .nav-text-filled {
+  clip-path: inset(-0.2em -0.15em -0.2em -0.15em);
+}
+
+.site-header nav a:is(
+  [aria-current="page"],
+  :focus-visible,
+  .is-departing
+) .nav-text-shadow {
+  clip-path: inset(-0.2em -0.15em 100% -0.15em);
+}
+
+@media (hover: hover) {
+  .site-header nav a:hover .nav-text-filled {
+    clip-path: inset(-0.2em -0.15em -0.2em -0.15em);
+  }
+
+  .site-header nav a:hover .nav-text-shadow {
+    clip-path: inset(-0.2em -0.15em 100% -0.15em);
   }
 }
