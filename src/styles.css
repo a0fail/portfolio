@@ -442,3 +442,36 @@ footer > :last-child { justify-self: end; text-align: right; }
     height: 3px;
   }
 }
+
+
+/* Навигация на широких смартфонах */
+@media (min-width: 400px) and (max-width: 620px) {
+  .site-header {
+    min-height: 108px;
+    padding-top: 20px;
+    padding-bottom: 23px;
+  }
+
+  .site-header nav {
+    gap: clamp(28px, 7vw, 38px);
+  }
+
+  .site-header nav a {
+    min-height: 60px;
+    padding: 9px 0;
+  }
+
+  .nav-label {
+    font-size: clamp(1.8rem, 7.5vw, 2.125rem);
+  }
+
+  .nav-water {
+    top: calc(100% + 7px);
+  }
+}
+
+/* Запрещаем растягивание страницы за верхнюю и нижнюю границы */
+html,
+body {
+  overscroll-behavior-y: none;
+}
