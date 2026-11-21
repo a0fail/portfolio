@@ -2,6 +2,13 @@
 // Имя, биография и контакты находятся в profile.ts,
 // тексты проектов — в webProjects.ts, художественных работ — в artworks.ts.
 export const siteText = {
+  projectProcess: {
+    title: 'Как создавался проект',
+    aiTitle: 'Использование ИИ',
+    aiAbsent: 'Без генеративного ИИ',
+    legacyDetailsTitle: 'О проекте и процессе создания',
+    aiCategories: { graphics: 'Графика', code: 'Разработка', text: 'Тексты', research: 'Поиск и исследование концепций' },
+  },
   navigation: {
     home: 'Home / About Me',
     webDesign: 'Web Design',

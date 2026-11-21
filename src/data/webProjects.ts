@@ -1,4 +1,5 @@
-import type { Game } from './types';
+import { papersProcess, sectorProcess } from './projectProcesses';
+import type { Game, ProjectProcessData } from './types';
 const papersDetails = [
   {
     "title": "Об игре",
@@ -36,7 +37,7 @@ const sectorDetails = [
   }
 ];
 export const games: Game[] = [
-  { id: 'accept-papers', title: 'Accept Papers, Please', description: 'Браузерная игра, вдохновленная Papers, please.\nПочувствуй себя по эту сторону стекла! Выдержи все круги визового ада и получи разрешение на отъезд.', tags: ['Browser game', 'Жанр: симулятор бюрократии'], images: [
+  { id: 'accept-papers', workflow: papersProcess, title: 'Accept Papers, Please', description: 'Браузерная игра, вдохновленная Papers, please.\nПочувствуй себя по эту сторону стекла! Выдержи все круги визового ада и получи разрешение на отъезд.', tags: ['Browser game', 'Жанр: симулятор бюрократии'], images: [
   {
     "id": "papers",
     "src": "assets/games/accept-papers/papers.gif",
@@ -74,7 +75,7 @@ export const games: Game[] = [
     }
   ]
 }, details: papersDetails, playUrl: 'https://a0fail.github.io/accept-papers-please/' },
-  { id: 'sector-503', title: 'Sector 503', description: 'Браузерная игра, вдохновленная старыми приставками и играми, типа Doom и Wolfenstein 3D.\nОсвободи сервер от оков вирусной деспотии. Уничтожь киберугрозы во имя материнской платы, оперативки и святой видюхи!', tags: ['Browser game', 'Жанр: симулятор ретро-приставки'], images: [
+  { id: 'sector-503', workflow: sectorProcess, title: 'Sector 503', description: 'Браузерная игра, вдохновленная старыми приставками и играми, типа Doom и Wolfenstein 3D.\nОсвободи сервер от оков вирусной деспотии. Уничтожь киберугрозы во имя материнской платы, оперативки и святой видюхи!', tags: ['Browser game', 'Жанр: симулятор ретро-приставки'], images: [
   {
     "id": "sector",
     "src": "assets/games/sector-503/sector.webp",
@@ -117,6 +118,7 @@ export const games: Game[] = [
 }, details: sectorDetails, playUrl: 'https://a0fail.github.io/sector-503/' },
 ];
 export const profkom = {
+  workflow: undefined as ProjectProcessData | undefined,
   "title": "Редизайн ВК-группы Профкома ВМК МГУ",
   "description": "Обновление оформления сообщества: от страницы ВКонтакте и логотипа до принта на свитшот.",
   "comparisons": [
