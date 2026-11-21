@@ -596,3 +596,8 @@ figcaption:not(.sr-only), .hint { max-width: var(--text-measure); text-wrap: pre
 .filters button { max-width: 100%; text-wrap: balance; overflow-wrap: anywhere; }
 .play-game { font-size: var(--text-art-subheading); line-height: 1.25; }
 .comparison-label { font-size: var(--text-work-title); line-height: 1.4; }
+
+.project-details-toggle { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
+@media (max-width: 620px) {
+  .project-details-toggle { font-size: 1.05rem; }
+}

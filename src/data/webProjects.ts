@@ -141,6 +141,7 @@ export const profkom = {
     {
       "id": "logo",
       "title": "Логотип до и после",
+      "hideTitle": true,
       "aspect": "1 / 1",
       "before": {
         "id": "logo_old",
