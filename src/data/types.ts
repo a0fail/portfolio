@@ -1,5 +1,5 @@
 export interface ProcessStep { id: string; title: string; description: string }
-export interface AIUsage { category: 'graphics' | 'code' | 'text' | 'research'; description: string }
+export interface AIUsage { category: 'graphics' | 'code' | 'text' | 'research' | 'audio'; description: string }
 export interface ProjectProcessData { title?: string; steps: ProcessStep[]; aiUsage?: AIUsage[]; aiConfirmedAbsent?: boolean }
 export interface Media { id: string; src?: string; alt: string; caption?: string; captionAccent?: string; align?: 'start' | 'center' | 'end'; background?: boolean; width?: number; height?: number; stage?: string; aspect?: string; tone?: string; order?: number }
 export interface Game { workflow?: ProjectProcessData; detailsTitle?: string; id: string; title: string; description: string; tags: string[]; images: Media[]; process?: { title: string; images: Media[] }; details: { title: string; text: string }[]; playUrl?: string }

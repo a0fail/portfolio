@@ -5,9 +5,9 @@ export const siteText = {
   projectProcess: {
     title: 'Как создавался проект',
     aiTitle: 'Использование ИИ',
-    aiAbsent: 'Без генеративного ИИ',
+    aiAbsent: 'Всё ручками, без генеративного ИИ',
     legacyDetailsTitle: 'О проекте и процессе создания',
-    aiCategories: { graphics: 'Графика', code: 'Разработка', text: 'Тексты', research: 'Поиск и исследование концепций' },
+    aiCategories: { graphics: 'Графика', code: 'Код', text: 'Тексты', research: 'Поиск/исследование', audio: 'Звук', },
   },
   navigation: {
     home: 'Home / About Me',
