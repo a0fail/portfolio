@@ -429,8 +429,8 @@ footer > :last-child { justify-self: end; text-align: right; }
 /* Финальная настройка мобильной навигации */
 @media (max-width: 620px) {
   .site-header {
-    min-height: 84px;
-    padding-top: 14px;
+    min-height: 92px;      /* было 84px */
+    padding-top: 22px;    /* было 14px */
     padding-bottom: 16px;
   }
 
@@ -447,8 +447,8 @@ footer > :last-child { justify-self: end; text-align: right; }
 /* Навигация на широких смартфонах */
 @media (min-width: 400px) and (max-width: 620px) {
   .site-header {
-    min-height: 108px;
-    padding-top: 20px;
+    min-height: 116px;    /* было 108px */
+    padding-top: 28px;    /* было 20px */
     padding-bottom: 23px;
   }
 
