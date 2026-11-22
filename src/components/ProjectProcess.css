@@ -58,18 +58,84 @@
 .process-track--flow::before { display: none; }
 @keyframes process-text-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 620px) {
-  .process-track { gap: 8px; }
-  .process-step { padding-inline: 2px; }
-  .process-track--four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }
-  .process-track--four::before { display: none; }
-  .process-track--four > li:nth-child(3) { grid-row: 2; grid-column: 2; }
-  .process-track--four > li:nth-child(4) { grid-row: 2; grid-column: 1; }
-  .process-track--four > li::after { position: absolute; color: var(--purple); font-size: 18px; line-height: 1; pointer-events: none; }
-  .process-track--four > li:nth-child(1)::after { content: '→'; left: calc(100% + 4px); top: 16px; }
-  .process-track--four > li:nth-child(2)::after { content: '↓'; left: calc(50% - 8px); top: calc(100% + 8px); }
-  .process-track--four > li:nth-child(3)::after { content: '←'; right: calc(100% + 4px); top: 16px; }
-  .process-panel { padding: 16px; }
-  .process-ai { padding-left: 12px; }
+  .process-track,
+  .process-track--four,
+  .process-track--flow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  /* Вертикальная линия между этапами */
+  .process-track::before,
+  .process-track--flow::before {
+    display: block;
+    top: 30px;
+    bottom: 30px;
+    left: 19px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: var(--line);
+  }
+
+  /* Убираем перестановку этапов в змейку */
+  .process-track--four > li:nth-child(3),
+  .process-track--four > li:nth-child(4) {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  /* Убираем горизонтальные стрелки змейки */
+  .process-track--four > li::after {
+    content: none;
+  }
+
+  /* Кружок — название — шеврон */
+  .process-step {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) 16px;
+    align-items: center;
+    justify-items: stretch;
+    gap: 14px;
+
+    width: 100%;
+    height: auto;
+    min-height: 62px;
+    padding: 10px 4px 10px 0;
+
+    text-align: left;
+  }
+
+  .process-number {
+    position: relative;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+  }
+
+  .process-step-name {
+    width: auto;
+    text-align: left;
+    text-wrap: pretty;
+  }
+
+  .process-chevron {
+    position: static;
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border-radius: 0;
+    justify-self: end;
+  }
+
+  .process-panel {
+    margin-top: 16px;
+    padding: 16px;
+  }
+
+  .process-ai {
+    padding-left: 12px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .project-process *, .project-process *::before, .project-process *::after { animation: none !important; transition: none !important; }
