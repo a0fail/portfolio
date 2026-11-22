@@ -633,3 +633,67 @@ figcaption:not(.sr-only), .hint { max-width: var(--text-measure); text-wrap: pre
     pointer-events: none;
   }
 }
+
+
+/* Game heading: title + CTA, full-width description */
+
+@media (min-width: 621px) {
+  .game-project .project-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title cta"
+      "description description";
+    column-gap: 32px;
+    row-gap: 18px;
+    align-items: end;
+  }
+
+  .game-heading-title {
+    grid-area: title;
+    min-width: 0;
+  }
+
+  .game-heading-title h2 {
+    margin: 16px 0 0;
+  }
+
+  .game-heading-description {
+    grid-area: description;
+    width: 100%;
+    max-width: none !important;
+    margin: 0;
+  }
+
+  .game-project .project-heading .play-game {
+    grid-area: cta;
+    align-self: end;
+
+    /* Поднимаем низ кнопки к линии обычных букв */
+    margin-bottom: 7px;
+  }
+}
+
+@media (max-width: 620px) {
+  .game-project .project-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .game-heading-title h2 {
+    margin: 16px 0 12px;
+  }
+
+  .game-heading-description {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .game-project .project-heading .play-game {
+    align-self: flex-start;
+    margin-top: 20px;
+  }
+}

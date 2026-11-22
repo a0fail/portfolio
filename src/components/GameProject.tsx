@@ -59,33 +59,37 @@ export function GameProject({
       )}
 
       {/* 1. Игра */}
-      <div className="project-heading">
-        <div>
-          <div className="tags">
-            {game.tags.map(tag => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
+      
+<div className="project-heading">
+  <div className="game-heading-title">
+    <div className="tags">
+      {game.tags.map(tag => (
+        <span key={tag}>{tag}</span>
+      ))}
+    </div>
 
-          <h2>{game.title}</h2>
-          <p>{game.description}</p>
-        </div>
+    <h2>{game.title}</h2>
+  </div>
 
-        {game.playUrl ? (
-          <a
-            className="button primary play-game"
-            href={game.playUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Play Game
-          </a>
-        ) : (
-          <button className="button play-game" disabled>
-            Play Game · скоро
-          </button>
-        )}
-      </div>
+  <p className="game-heading-description">
+    {game.description}
+  </p>
+
+  {game.playUrl ? (
+    <a
+      className="button primary play-game"
+      href={game.playUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Play Game
+    </a>
+  ) : (
+    <button className="button play-game" disabled>
+      Play Game · скоро
+    </button>
+  )}
+</div>
 
       <ImageGallery
         images={game.images}
