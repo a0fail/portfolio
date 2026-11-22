@@ -472,7 +472,7 @@ footer > :last-child { justify-self: end; text-align: right; }
 
 
 
-/* Фон за пределами страницы — цвет шапки */
+Фон за пределами страницы — цвет шапки
 html {
   background-color: var(--surface);
   overscroll-behavior-y: auto;
@@ -600,4 +600,36 @@ figcaption:not(.sr-only), .hint { max-width: var(--text-measure); text-wrap: pre
 .project-details-toggle { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
 @media (max-width: 620px) {
   .project-details-toggle { font-size: 1.05rem; }
+}
+
+/* Game layout: gameplay, mechanics, development */
+
+.game-project .project-details {
+  margin-top: 24px;
+}
+
+.game-development {
+  margin-top: 32px;
+}
+
+.game-development .project-process {
+  margin-block: 0;
+}
+
+.game-development .game-process {
+  margin-top: 24px;
+}
+
+/* Перекрываем субпиксельный зазор над sticky header */
+@media (max-width: 620px) {
+  .site-header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -3px;
+    height: 4px;
+    background: var(--surface);
+    pointer-events: none;
+  }
 }
