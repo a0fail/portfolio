@@ -697,3 +697,78 @@ figcaption:not(.sr-only), .hint { max-width: var(--text-measure); text-wrap: pre
     margin-top: 20px;
   }
 }
+
+
+/* Home: mobile direction cards */
+
+.area-text-mobile {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .area-text-desktop {
+    display: none;
+  }
+
+  .area-text-mobile {
+    display: inline;
+  }
+
+  .about-section .areas {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .about-section .areas article {
+    min-width: 0;
+    padding: 22px 20px;
+
+    border: 0;
+    border-left: 2px solid var(--line);
+    border-radius: 0 12px 12px 0;
+
+    background: var(--surface);
+  }
+
+  .about-section .areas article > .section-divider-wave {
+    display: none;
+  }
+
+  .about-section .areas article .eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .about-section .areas article h3 {
+    margin: 0 0 12px;
+  }
+}
+
+/* Home: разделители вокруг трёх карточек */
+
+.areas > .section-divider-wave,
+.contact-section > .section-divider-wave {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .about-section .areas {
+    position: relative;
+  }
+
+  /* Волна перед группой карточек */
+  .about-section .areas > .section-divider-wave {
+    display: block;
+    top: -42px;
+  }
+
+  .contact-section {
+    position: relative;
+    margin-top: 48px;
+  }
+
+  /* Волна между карточками и контактами */
+  .contact-section > .section-divider-wave {
+    display: block;
+    top: -34px;
+  }
+}

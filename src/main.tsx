@@ -12,6 +12,18 @@ import { GameProject } from './components/GameProject';
 import { Header } from './components/Header';
 import { ProjectProcess } from './components/ProjectProcess';
 import './styles.css';
+
+const mobileAreaTexts: Record<string, string> = {
+  'Digital Art & Illustration':
+    'Цифровые иллюстрации, графический дизайн, приправим пиксель-артом. Принты, оформление мероприятий, ассеты.',
+
+  'Design Leadership':
+    'Возглавлял блок дизайна в профкоме ВМК МГУ. Координировал работу, взаимодействовал с заказчиками, общался с типографией.',
+
+  'Development & Web Design':
+    'Frontend, веб-приложения и браузерные игры. Работа над интерфейсами, интерактивностью и пользовательским опытом. И вайбкодим (чуть-чуть ^_^ ).',
+};
+
 const routes=[{id:'home',label:siteText.navigation.home},{id:'web-design',label:siteText.navigation.webDesign},{id:'digital-art',label:siteText.navigation.digitalArt}];
 const currentPage=()=>{const page=window.location.hash.replace('#/','');return routes.some(r=>r.id===page)?page:'home';};
 function Home({open}:{open:OpenGallery}) {
@@ -21,7 +33,27 @@ function Home({open}:{open:OpenGallery}) {
  <p className="name-caption">
   <span>в простонародье —</span>
   <span className="accent">Владимир Волков</span>
-</p><p className="role">{profile.role}</p><p className="intro">{profile.intro}</p><p className="hero-note">{siteText.home.slogan}</p></div><button className="profile-artwork" onClick={()=>open([photo],0)} aria-label={siteText.home.photoOpenLabel}><MediaView item={photo} eager/></button></section><section className="about-section"><div className="section-intro"><p className="eyebrow">{siteText.home.aboutEyebrow}</p><h2>{siteText.home.aboutTitle}<br/><span className="muted">{siteText.home.aboutSubtitle}</span></h2></div><div className="areas">{profile.areas.map(area=><article key={area.title}><p className="eyebrow">{area.label}</p><h3>{area.title}</h3><p>{area.text}</p></article>)}</div></section><section className="contact-section"><div><p className="eyebrow">{siteText.home.contactEyebrow}</p><h2>{siteText.home.contactTitle}<span className="accent">{siteText.home.contactTitleAccent}</span></h2>{contactDescription && <p>{contactDescription}</p>}</div><div className="contacts">{profile.contacts.map(contact=><div className="contact" key={contact.label}><span>{contact.label}</span><span className="contact-values">{(contact.links ?? [contact]).map((link,index)=><React.Fragment key={link.href || index}>{index>0 && <span className="contact-separator" aria-hidden="true"> · </span>}{link.href?<a href={link.href} target={link.href.startsWith('mailto:')?undefined:'_blank'} rel="noopener noreferrer">{link.value}</a>:<span className="muted">{link.value}</span>}</React.Fragment>)}</span></div>)}</div></section></>;
+</p><p className="role">{profile.role}</p><p className="intro">{profile.intro}</p><p className="hero-note">{siteText.home.slogan}</p></div><button className="profile-artwork" onClick={()=>open([photo],0)} aria-label={siteText.home.photoOpenLabel}><MediaView item={photo} eager/></button></section><section className="about-section"><div className="section-intro"><p className="eyebrow">{siteText.home.aboutEyebrow}</p><h2>{siteText.home.aboutTitle}<br/><span className="muted">{siteText.home.aboutSubtitle}</span></h2></div>
+<div className="areas">
+  {profile.areas.map(area => (
+    <article key={area.title}>
+      <p className="eyebrow">{area.label}</p>
+
+      <h3>{area.title}</h3>
+
+      <p>
+        <span className="area-text-desktop">
+          {area.text}
+        </span>
+
+        <span className="area-text-mobile">
+          {mobileAreaTexts[area.title] ?? area.text}
+        </span>
+      </p>
+    </article>
+  ))}
+</div>
+</section><section className="contact-section"><div><p className="eyebrow">{siteText.home.contactEyebrow}</p><h2>{siteText.home.contactTitle}<span className="accent">{siteText.home.contactTitleAccent}</span></h2>{contactDescription && <p>{contactDescription}</p>}</div><div className="contacts">{profile.contacts.map(contact=><div className="contact" key={contact.label}><span>{contact.label}</span><span className="contact-values">{(contact.links ?? [contact]).map((link,index)=><React.Fragment key={link.href || index}>{index>0 && <span className="contact-separator" aria-hidden="true"> · </span>}{link.href?<a href={link.href} target={link.href.startsWith('mailto:')?undefined:'_blank'} rel="noopener noreferrer">{link.value}</a>:<span className="muted">{link.value}</span>}</React.Fragment>)}</span></div>)}</div></section></>;
 }
 function WebDesign({open}:{open:OpenGallery}) {return <><div className="page-heading"><p className="eyebrow">{siteText.webDesign.eyebrow}</p><h1>{siteText.webDesign.title}<br/><span className="accent">{siteText.webDesign.titleAccent}</span></h1></div>{games.map((game,index)=><GameProject key={game.id} game={game} open={open} eyebrow={index===0 ? siteText.webDesign.gamesEyebrow : undefined}/>)}<section className="project"><p className="eyebrow">{siteText.webDesign.communityEyebrow}</p><h2>{profkom.title}</h2><p>{profkom.description}</p>{profkom.workflow && <ProjectProcess data={profkom.workflow}/>}<div className="comparisons redesign-grid">{profkom.comparisons.map(pair=><BeforeAfterSlider key={pair.id} {...pair}/>)}<ImageGallery images={profkom.images} open={open} className="redesign-print"/></div></section><section className="project"><p className="eyebrow">{siteText.webDesign.eventEyebrow}</p><h2>{initiation.title}</h2><p>{initiation.description}</p><ImageGallery images={initiation.images} open={open} className="identity-gallery"/></section></>;}
 function DigitalArt({open}:{open:OpenGallery}) {
