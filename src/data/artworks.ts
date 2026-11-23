@@ -264,7 +264,7 @@ export const artworks: ArtCategory[] = [
                 "id": "crystal",
                 "src": "assets/digital-art/vector/crystal.jpeg",
                 "alt": "Бейдж для выездного мероприятия",
-                "caption": "Бейдж для выездного мероприятия · 2025",
+                "caption": "Бейдж (шрифты выбраны заказчиком) · 2025",
                 "background": false,
                 "width": 839,
                 "height": 1280
