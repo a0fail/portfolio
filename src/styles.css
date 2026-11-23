@@ -1594,3 +1594,11 @@ main .art-category:is(
     transform: translateY(20px);
   }
 }
+
+
+/* Поднимаем Hero на десктопе */
+@media (min-width: 621px) {
+  .hero {
+    padding-top: 60px;
+  }
+}
