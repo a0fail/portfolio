@@ -29,7 +29,7 @@
 // }
 
 
-import { useId, useState } from 'react';
+// import { useId, useState } from 'react';
 import type { Game } from '../data/types';
 import { ImageGallery, type OpenGallery } from './Media';
 import { ProjectProcess } from './ProjectProcess';
@@ -43,14 +43,14 @@ export function GameProject({
   open: OpenGallery;
   eyebrow?: string;
 }) {
-  const [expanded, setExpanded] = useState(false);
-  const id = useId();
+  // const [expanded, setExpanded] = useState(false);
+  // const id = useId();
 
   // Описание самой игры уже есть над геймплеем.
   // В раскрывающемся блоке оставляем механики и особенности.
-  const mechanics = game.details.filter(
-    detail => detail.title.toLowerCase() !== 'об игре'
-  );
+  // const mechanics = game.details.filter(
+  //   detail => detail.title.toLowerCase() !== 'об игре'
+  // );
 
   return (
     <section className="project game-project" id={game.id}>
@@ -98,7 +98,7 @@ export function GameProject({
       />
 
       {/* Механики сразу после геймплея */}
-      {mechanics.length > 0 && (
+      {/* {mechanics.length > 0 && (
         <div className="project-details">
           <button
             className="project-details-toggle"
@@ -132,7 +132,7 @@ export function GameProject({
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* 2. Как создавалась игра */}
       <div className="game-development">
@@ -148,7 +148,7 @@ export function GameProject({
         {game.process && (
           <section
             className="game-process"
-            aria-label="Эскизы и готовая графика"
+            aria-label={'Эскизы и\u00A0готовая графика'}
           >
             <ImageGallery
               images={game.process.images}

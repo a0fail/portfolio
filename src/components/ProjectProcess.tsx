@@ -87,9 +87,34 @@ function AnimatedProcessText({
 
   if (!rendered) return null;
 
+
+  const link = rendered.link;
+
+  const linkIndex = link
+    ? rendered.description.indexOf(link.text)
+    : -1;
+
+  const content = link && linkIndex !== -1 ? (
+    <>
+      {rendered.description.slice(0, linkIndex)}
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {link.text}
+      </a>
+      {rendered.description.slice(
+        linkIndex + link.text.length
+      )}
+    </>
+  ) : (
+    rendered.description
+  );
+
   return (
     <p className={`process-description${visible ? ' is-visible' : ''}`}>
-      {rendered.description}
+      {content}
     </p>
   );
 }

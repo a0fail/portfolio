@@ -18,10 +18,10 @@ const mobileAreaTexts: Record<string, string> = {
     'Цифровые иллюстрации, графический дизайн, приправим пиксель-артом. Принты, оформление мероприятий, ассеты.',
 
   'Design Leadership':
-    'Возглавлял блок дизайна в профкоме ВМК МГУ. Координировал работу, взаимодействовал с заказчиками, общался с типографией.',
+    'Возглавлял блок дизайна в\u00A0профкоме ВМК МГУ. Координировал работу, взаимодействовал с\u00A0заказчиками, общался с\u00A0типографией.',
 
   'Development & Web Design':
-    'Frontend, веб-приложения и браузерные игры. Работа над интерфейсами, интерактивностью и пользовательским опытом. И вайбкодим (чуть-чуть ^_^ ).',
+    'Frontend, веб-приложения и\u00A0браузерные игры. Работа над\u00A0интерфейсами, интерактивностью и\u00A0пользовательским опытом. И\u00A0вайбкодим (чуть-чуть\u00A0^_^\).',
 };
 
 const routes=[{id:'home',label:siteText.navigation.home},{id:'web-design',label:siteText.navigation.webDesign},{id:'digital-art',label:siteText.navigation.digitalArt}];
@@ -71,7 +71,15 @@ function Home() {
       <p className="role">{profile.role}</p>
     </div>
 
-    <p className="intro">{profile.intro}</p>
+    
+    <p className="intro">
+      {profile.intro.split(/\n\s*\n/).map((part, index) => (
+        <span className="intro-part" key={index}>
+          {part}
+        </span>
+      ))}
+    </p>
+
 
     {siteText.home.slogan && (
       <p className="hero-note">
@@ -109,14 +117,26 @@ function Home() {
 }
 function WebDesign({open}:{open:OpenGallery}) {
 
+  
   const webImages: Media[] = [
     ...games.flatMap(game => [
       ...ordered(game.images),
       ...ordered(game.process?.images ?? []),
     ]),
+
+    // Редизайн Профкома: сравнения как обычные изображения
+    ...profkom.comparisons.flatMap(pair => [
+      pair.before,
+      pair.after,
+    ]),
+
+    // Принт для мерча Профкома
     ...profkom.images,
+
+    // Посвящение
     ...initiation.images,
   ];
+
 
   const openWeb = createPageGallery(open, webImages);
 
@@ -172,7 +192,7 @@ function DigitalArt({open}:{open:OpenGallery}) {
     }
   }}
 >
-  {category === 'Мерч и оформление мероприятий' ? (
+  {category === 'Мерч и\u00A0оформление мероприятий' ? (
     <>
       <span className="art-filter-full">{category}</span>
       <span className="art-filter-short" aria-hidden="true">

@@ -1502,3 +1502,95 @@ main .art-category:is(
 ) > .project-process > .process-ai {
   margin-top: 0;
 }
+
+
+/* Игровые пайплайны — desktop */
+
+@media (min-width: 621px) {
+  /* Механики -> Как создавалась игра */
+  .game-project .game-development {
+    margin-top: 75px;
+  }
+
+  /* Подписи этапов -> изображения разработки */
+  .game-project .game-development .game-process {
+    margin-top: 45px;
+  }
+}
+
+
+/* На мобильных оставляем только Gmail */
+
+@media (max-width: 620px) {
+  .contact-values a[href="mailto:a0fail@yandex.ru"],
+  .contact-values a[href="mailto:a0fail@yandex.ru"]
+  + .contact-separator {
+    display: none;
+  }
+}
+.project-process .process-description a {
+  color: var(--sage);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.project-process .process-description a:hover {
+  color: #f0ede9;
+}
+
+.project-process .process-description a:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 3px;
+}
+
+/* Mobile: больше пространства между геймплеем и разработкой */
+
+@media (max-width: 620px) {
+  .game-project .game-development {
+    margin-top: 50px;
+  }
+}
+
+/* Подсказки Before / After для разных устройств */
+
+.hint-mobile {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .hint-desktop {
+    display: none;
+  }
+
+  .hint-mobile {
+    display: inline;
+  }
+}
+
+
+/* Home — управляемый отступ между описанием и слоганом */
+
+.hero .intro-part {
+  display: block;
+  white-space: pre-line;
+}
+
+/* На мобильных сохраняем прежний большой интервал */
+.hero .intro-part + .intro-part {
+  margin-top: 1.7em;
+}
+
+/* На десктопе — компактный, но заметный отступ */
+@media (min-width: 621px) {
+  .hero .intro-part + .intro-part {
+    margin-top: 12px;
+  }
+}
+
+/* Home — опускаем блок описания только на десктопе */
+
+@media (min-width: 621px) {
+  .hero .intro {
+    transform: translateY(20px);
+  }
+}
