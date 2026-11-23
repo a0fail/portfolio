@@ -14,7 +14,26 @@ export function ImageLightbox({images, initialIndex, close}: {images:Media[];ini
  const item=images[index];
  return <dialog ref={dialog} className="lightbox" aria-label="Просмотр изображений" onCancel={event=>{event.preventDefault();close();}} onClick={event=>{if(event.target===event.currentTarget)close();}} onKeyDown={event=>{if(event.key==='ArrowLeft'){event.preventDefault();move(-1);}if(event.key==='ArrowRight'){event.preventDefault();move(1);}}}>
  <div className="lightbox-top"><span aria-live="polite">{index+1} / {images.length}</span><button autoFocus onClick={close} aria-label="Закрыть просмотр">✕</button></div>
- <figure className="lightbox-media" onTouchStart={event=>{touch.current=event.touches[0].clientX;}} onTouchEnd={event=>{if(touch.current!==null){const diff=event.changedTouches[0].clientX-touch.current;if(Math.abs(diff)>50)move(diff>0?-1:1);touch.current=null;}}}><MediaView item={item} eager/><figcaption aria-live="polite">{item.stage && `${item.stage} · `}<MediaCaption item={item} fallback/></figcaption></figure>
- {images.length>1 && <div className="lightbox-controls"><button onClick={()=>move(-1)} aria-label="Предыдущее изображение">←</button><span>Листайте работы</span><button onClick={()=>move(1)} aria-label="Следующее изображение">→</button></div>}
+ <div className="lightbox-viewer">
+  {images.length > 1 && (
+    <button
+      className="lightbox-arrow"
+      onClick={() => move(-1)}
+      aria-label="Предыдущее изображение"
+    >
+      ←
+    </button>
+  )}
+  <figure className="lightbox-media" onTouchStart={event=>{touch.current=event.touches[0].clientX;}} onTouchEnd={event=>{if(touch.current!==null){const diff=event.changedTouches[0].clientX-touch.current;if(Math.abs(diff)>50)move(diff>0?-1:1);touch.current=null;}}}><MediaView item={item} eager/><figcaption aria-live="polite">{item.stage && `${item.stage} · `}<MediaCaption item={item} fallback/></figcaption></figure>
+  {images.length > 1 && (
+    <button
+      className="lightbox-arrow"
+      onClick={() => move(1)}
+      aria-label="Следующее изображение"
+    >
+      →
+    </button>
+  )}
+</div>
  </dialog>;
 }
