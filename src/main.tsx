@@ -162,17 +162,28 @@ function DigitalArt({open}:{open:OpenGallery}) {
     );
 
     return (
-      <button
-        key={category}
-        type="button"
-        onClick={() => {
-          if (target) {
-            scrollToArt(`art-${target.id}`);
-          }
-        }}
-      >
-        {category}
-      </button>
+      
+<button
+  key={category}
+  type="button"
+  onClick={() => {
+    if (target) {
+      scrollToArt(`art-${target.id}`);
+    }
+  }}
+>
+  {category === 'Мерч и оформление мероприятий' ? (
+    <>
+      <span className="art-filter-full">{category}</span>
+      <span className="art-filter-short" aria-hidden="true">
+        Мерч
+      </span>
+    </>
+  ) : (
+    category
+  )}
+</button>
+
     );
   })}
 </nav>

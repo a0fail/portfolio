@@ -25,22 +25,22 @@ export const games: Game[] = [
   {
     "id": "papers",
     "src": "assets/games/accept-papers/papers.gif",
-    "alt": "Геймплей"
+    "alt": "Геймплей Accept Papers, Please"
   },
   {
     "id": "papers1",
     "src": "assets/games/accept-papers/papers1.png",
-    "alt": "Скриншот 1"
+    "alt": "Начальный экран дня - Accept Papers, Please"
   },
   {
     "id": "papers2",
     "src": "assets/games/accept-papers/papers2.png",
-    "alt": "Скриншот 2"
+    "alt": "Основная игровая область - Accept Papers, Please"
   },
   {
     "id": "papers3",
     "src": "assets/games/accept-papers/papers3.png",
-    "alt": "Скриншот 3"
+    "alt": "Чтение документов - Accept Papers, Please"
   }
 ], process: {
   "title": "От идеи к пиксель-арту",
@@ -63,22 +63,22 @@ export const games: Game[] = [
   {
     "id": "sector",
     "src": "assets/games/sector-503/sector.webp",
-    "alt": "Геймплей"
+    "alt": "Геймплей - Sector 503"
   },
   {
     "id": "sector1",
     "src": "assets/games/sector-503/sector1.png",
-    "alt": "Скриншот 1"
+    "alt": "Worm во время стельбы - Sector 503"
   },
   {
     "id": "sector2",
     "src": "assets/games/sector-503/sector2.png",
-    "alt": "Скриншот 2"
+    "alt": "Выстрел - Sector 503"
   },
   {
     "id": "sector3",
     "src": "assets/games/sector-503/sector3.png",
-    "alt": "Скриншот 3"
+    "alt": "Cyper в неактивной фазе - Sector 503"
   }
 ], process: {
   "title": "От наброска к игровому спрайту",
@@ -86,17 +86,17 @@ export const games: Game[] = [
     {
       "id": "sector_trojan",
       "src": "assets/games/sector-503/sector_trojan.webp",
-      "alt": "Trojan — от наброска к спрайту"
+      "alt": "Trojan - от наброска к спрайту"
     },
     {
       "id": "sector_cyper",
       "src": "assets/games/sector-503/sector_cyper.png",
-      "alt": "Cypher — от наброска к спрайту"
+      "alt": "Cypher - от наброска к спрайту"
     },
     {
       "id": "sector_worm",
       "src": "assets/games/sector-503/sector_worm.webp",
-      "alt": "Worm — от наброска к спрайту"
+      "alt": "Worm - от наброска к спрайту"
     }
   ]
 }, details: sectorDetails, playUrl: 'https://a0fail.github.io/sector-503/' },
@@ -149,8 +149,8 @@ export const profkom = {
       "width": 1504, "height": 1210,
       "background": false,
       "src": "assets/web-design/profkom-redesign/logo_tshirt_new.png",
-      "alt": "Новый логотип для внутреннего мерча профкома",
-      "caption": "Новый логотип для внутреннего мерча профкома"
+      "alt": "Новый логотип для внутреннего мерча Профкома",
+      "caption": "Новый логотип для внутреннего мерча Профкома"
     }
   ]
 };

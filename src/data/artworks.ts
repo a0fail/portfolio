@@ -55,13 +55,13 @@ export const artworks: ArtCategory[] = [
                 "id": "afisha",
                 "src": "assets/digital-art/faculty_day/afisha.webp",
                 "alt": "Афиша",
-                "caption": "Афиша"
+                "caption": "Афиша - День Факультета"
               },
               {
                 "id": "shopper",
                 "src": "assets/digital-art/faculty_day/shopper.webp",
                 "alt": "Шоппер",
-                "caption": "Шоппер",
+                "caption": "Шоппер - День Факультета",
                 "background": false,
                 "width": 2481,
                 "height": 3508,
@@ -71,7 +71,7 @@ export const artworks: ArtCategory[] = [
                 "id": "badge",
                 "src": "assets/digital-art/faculty_day/badge.webp",
                 "alt": "Бейджи организаторов",
-                "caption": "Бейджи организаторов",
+                "caption": "Бейджи организаторов - День Факультета",
                 "background": false,
                 "width": 947,
                 "height": 1299
@@ -80,7 +80,7 @@ export const artworks: ArtCategory[] = [
                 "id": "tshirt_logo",
                 "src": "assets/digital-art/faculty_day/tshirt_logo.png",
                 "alt": "Принт на футболку",
-                "caption": "Принт на футболку"
+                "caption": "Принт на футболку - День Факультета"
               }
             ],
             "layout": "paired-columns"
@@ -106,7 +106,7 @@ export const artworks: ArtCategory[] = [
               {
                 "id": "2sketch",
                 "src": "assets/digital-art/tshirts_viezd_2025/2sketch.jpeg",
-                "alt": "Разработка композиции",
+                "alt": "Анатомия и композиция",
                 "stage": "1 · Эскиз",
                 "background": false,
                 "width": 905,
@@ -115,7 +115,7 @@ export const artworks: ArtCategory[] = [
               {
                 "id": "1line",
                 "src": "assets/digital-art/tshirts_viezd_2025/1line.jpeg",
-                "alt": "Линейный рисунок",
+                "alt": "Лайнарт без аксессуаров",
                 "stage": "2 · Лайн",
                 "background": false,
                 "width": 905,
