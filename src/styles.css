@@ -915,3 +915,534 @@ figcaption:not(.sr-only), .hint { max-width: var(--text-measure); text-wrap: pre
 .art-category[id^="art-"] {
   scroll-margin-top: 150px;
 }
+
+
+
+/* ==========================================
+   FINAL SPACING — shared rhythm
+   ========================================== */
+
+:root {
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 56px;
+  --space-8: 64px;
+  --space-9: 72px;
+}
+
+/* ==========================================
+   WEB DESIGN — shared
+   ========================================== */
+
+/* Описание игры -> геймплей */
+.game-project .project-heading {
+  margin-bottom: var(--space-5);
+}
+
+/* Геймплей -> механики */
+.game-project .project-details {
+  margin-top: var(--space-1);
+}
+
+/* От ИИ до этапов */
+.game-development .process-ai {
+  margin-bottom: var(--space-5);
+}
+
+/* От этапов до графики разработки */
+.game-development .game-process {
+  margin-top: var(--space-5);
+}
+
+/* ==========================================
+   DIGITAL ART — shared
+   ========================================== */
+
+/* Заголовок категории / описание -> работы */
+.art-category .category-heading {
+  margin-bottom: var(--space-5);
+}
+
+/* Описание проекта -> первые изображения */
+.art-category .art-works {
+  margin-top: var(--space-4);
+}
+
+/* Отступы между группами работ */
+.art-category .art-works {
+  gap: var(--space-5);
+}
+
+/* Отступы между изображениями */
+.art-category .gallery {
+  gap: var(--space-4);
+}
+
+.art-category .gallery-column {
+  gap: var(--space-4);
+}
+
+/* Описание проекта -> процесс его создания */
+.art-project > p + .project-process {
+  margin-top: var(--space-6);
+}
+
+/* Описание категории -> процесс */
+.art-category > .category-heading + .project-process {
+  margin-top: var(--space-6);
+}
+
+/* Вертикальное пространство вокруг пайплайнов.
+   Внутреннюю панель с текстом не трогаем. */
+.art-category .project-process,
+.project:not(.game-project) .project-process {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+/* Пространство между разными проектами */
+.art-category .art-project + .art-project {
+  margin-top: var(--space-7);
+}
+
+/* ==========================================
+   DESKTOP
+   ========================================== */
+
+@media (min-width: 621px) {
+
+  /* WEB: после разделителей до названия проекта */
+  main .project {
+    padding-top: var(--space-8);
+  }
+
+  /* WEB: после графики игры до следующей волны */
+  .game-project {
+    padding-bottom: var(--space-7);
+  }
+
+  /* Механики -> "Как создавалась игра" */
+  .game-project .game-development {
+    margin-top: var(--space-7);
+  }
+
+  /* Community Design:
+     от описания до заголовка пайплайна */
+  .project:not(.game-project) > p:not(.eyebrow)
+  + .project-process {
+    margin-top: var(--space-6);
+  }
+
+  /* DIGITAL ART:
+     пространство от волны до заголовков */
+  .art-category {
+    padding-top: var(--space-9);
+    padding-bottom: var(--space-9);
+  }
+
+  /* Верхняя волна под фильтрами:
+     добавляем пространство только после неё */
+  .art-category:first-of-type {
+    padding-top: var(--space-9);
+  }
+
+  /* Перед подвалом не увеличиваем */
+  .art-category:last-of-type {
+    padding-bottom: 58px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 620px) {
+
+  /* HOME */
+
+  /* Больше воздуха под верхней волной */
+  .about-section {
+    --about-wave-gap: 80px;
+  }
+
+  /* Волна перед карточками + воздух до них */
+  .about-section .areas {
+    margin-top: 96px;
+    gap: 22px;
+  }
+
+  .about-section .areas > .section-divider-wave {
+    top: -48px;
+  }
+
+  /* Волна -> контакты: заметно больше воздуха */
+  .contact-section {
+    margin-top: 104px;
+    margin-bottom: 72px;
+  }
+
+  .contact-section > .section-divider-wave {
+    top: -72px;
+  }
+
+  /* WEB */
+
+  /* Волна -> название проекта */
+  main .project {
+    padding-top: var(--space-6);
+  }
+
+  /* После изображений до следующей волны */
+  .game-project {
+    padding-bottom: 44px;
+  }
+
+  /* Play Game -> геймплей */
+  .game-project .project-heading {
+    margin-bottom: 36px;
+  }
+
+  /* Сохраняем прежнее расстояние:
+     механики -> как создавалась */
+  .game-project .game-development {
+    margin-top: var(--space-4);
+  }
+
+  /* "Как создавалась игра" -> ИИ */
+  .game-development .process-heading {
+    margin-bottom: var(--space-2);
+  }
+
+  /* Чуть больше места вокруг этапов */
+  .game-development .process-ai {
+    margin-bottom: var(--space-4);
+  }
+
+  .game-development .game-process {
+    margin-top: var(--space-4);
+  }
+
+  /* Картинки создания игры */
+  .game-development .game-process .gallery {
+    gap: 20px;
+  }
+
+  /* Шапка и аватарка посвящения */
+  .project .identity-gallery {
+    gap: 20px;
+  }
+
+  /* DIGITAL ART */
+
+  .art-category {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-8);
+  }
+
+  /* Первая волна после навигации:
+     добавляем только снизу */
+  .art-category:first-of-type {
+    padding-top: var(--space-8);
+  }
+
+  /* Последний раздел перед футером */
+  .art-category:last-of-type {
+    padding-bottom: 58px;
+  }
+
+  /* Заголовок / описание -> галерея */
+  .art-category .category-heading {
+    margin-bottom: 36px;
+  }
+
+  .art-category .art-works {
+    margin-top: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  /* Интервалы между картинками */
+  .art-category .gallery {
+    gap: 20px;
+  }
+
+  .art-category .gallery-column {
+    gap: var(--space-3);
+  }
+
+  /* Описание -> "От эскиза к..." */
+  .art-category .project-process,
+  .project:not(.game-project) .project-process {
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-5);
+  }
+
+  .art-project > p + .project-process,
+  .art-category > .category-heading + .project-process {
+    margin-top: var(--space-5);
+  }
+
+  .art-category .art-project + .art-project {
+    margin-top: var(--space-6);
+  }
+}
+
+
+/* ==========================================
+   FINAL SPACING — finishing adjustments
+   ========================================== */
+
+/* WEB: одинаковый отступ от волн до названий разделов */
+main .project > .eyebrow {
+  margin-top: 10px;
+}
+
+/* Больше воздуха от нижней волны до футера */
+footer {
+  padding-top: 48px;
+}
+
+/* ==========================================
+   DESKTOP
+   ========================================== */
+
+@media (min-width: 621px) {
+
+  /* HOME: от волны до названий трёх направлений */
+  .about-section .areas article {
+    padding-top: 48px;
+  }
+
+  /* WEB: больше воздуха вокруг разделителей */
+  main .project {
+    padding-top: 76px;
+    padding-bottom: 68px;
+  }
+
+  /* Первый разделитель Web оставляем как раньше */
+  main > .page-heading + .project {
+    padding-top: 64px;
+  }
+
+  /* ART: больше пространства вокруг волн */
+  .art-category {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  /* Верхний разделитель Art не трогаем */
+  .art-category:first-of-type {
+    padding-top: 72px;
+  }
+
+  /* Перед подвалом Art сохраняем прежний отступ */
+  .art-category:last-of-type {
+    padding-bottom: 58px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 620px) {
+
+  /* HOME: больше места от волны до первой карточки */
+  .about-section .areas {
+    margin-top: 136px;
+  }
+
+  .about-section .areas > .section-divider-wave {
+    top: -72px;
+  }
+
+  /*
+   HOME: одинаковые 72px от последней карточки
+   до волны и от волны до блока контактов.
+  */
+  .about-section {
+    padding-bottom: 0;
+  }
+
+  /* WEB: текст -> Play Game = Play Game -> геймплей */
+  .game-project .project-heading .play-game {
+    margin-top: 36px;
+  }
+
+  .game-project .project-heading {
+    margin-bottom: 36px;
+  }
+
+  /* WEB и ART: больше вертикальные интервалы
+     между изображениями с подписями */
+  .gallery {
+    row-gap: 30px;
+  }
+
+  .gallery-column {
+    row-gap: 30px;
+  }
+
+  .game-development .game-process .gallery,
+  .project .identity-gallery,
+  .art-category .gallery {
+    row-gap: 30px;
+  }
+
+  /* ART: увеличиваем расстояние между командами */
+  .art-category[data-category="trip-2026"] .art-works {
+    row-gap: 64px;
+  }
+
+  /* Единое расстояние от волн до заголовков WEB */
+  main .project > .eyebrow {
+    margin-top: 10px;
+  }
+
+  /* От подвального разделителя до текста */
+  footer {
+    padding-top: 44px;
+  }
+}
+.art-filter-short {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .art-filter-full {
+    display: none;
+  }
+
+  .art-filter-short {
+    display: inline;
+  }
+}
+
+
+
+/* Выравниваем расстояние от ИИ до этапов пайплайна */
+
+/* Desktop */
+@media (min-width: 621px) {
+  .art-category .project-process .process-ai,
+  .project:not(.game-project) .project-process .process-ai {
+    margin-bottom: 64px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  .art-category .project-process .process-ai,
+  .project:not(.game-project) .project-process .process-ai {
+    margin-bottom: 72px;
+  }
+}
+
+
+/* Digital Art — компактная навигация на мобильных */
+
+@media (max-width: 620px) {
+  main nav.filters {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+
+    justify-content: flex-start;
+    align-items: center;
+    align-self: flex-start;
+
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-inline: 0;
+  }
+
+  main nav.filters button {
+    flex: 0 0 auto;
+  }
+}
+
+
+/* Home: равные расстояния вокруг волны перед контактами */
+
+@media (max-width: 620px) {
+  main > .about-section {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  main > .about-section > .areas {
+    margin-bottom: 0;
+  }
+
+  main > .contact-section {
+    --contact-wave-gap: 88px;
+
+    position: relative;
+    margin-top: calc(2 * var(--contact-wave-gap));
+  }
+
+  main > .contact-section > .section-divider-wave {
+    display: block;
+    top: calc(-1 * var(--contact-wave-gap) - 9px);
+  }
+}
+
+/* Home: выравниваем расстояние вокруг первого разделителя */
+
+@media (max-width: 620px) {
+  .hero {
+    padding-bottom: 96px;
+  }
+}
+
+
+/* ==========================================
+   Web Design — process & section spacing
+   ========================================== */
+
+/* DESKTOP */
+@media (min-width: 621px) {
+
+  /* Игровые пайплайны: как в Art и редизайне */
+  .game-project .game-development {
+    margin-top: 96px;
+  }
+
+  .game-development .process-ai {
+    margin-bottom: 64px;
+  }
+
+  .game-project .game-development .game-process {
+    margin-top: 96px;
+  }
+
+  /* Компенсируем отсутствие нижнего margin у
+     игровых галерей перед следующим разделителем */
+  main .game-project {
+    padding-bottom: 96px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 620px) {
+
+  /* Редизайн профкома: внешние отступы как у игр */
+  main .project:not(.game-project) > .project-process {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  /* Убираем огромный промежуток между ИИ и кружками */
+  main .project:not(.game-project)
+  .project-process .process-ai {
+    margin-bottom: 32px;
+  }
+
+  /* Разделители после Accept Papers и Sector 503 */
+  main .game-project {
+    padding-bottom: 64px;
+  }
+}
