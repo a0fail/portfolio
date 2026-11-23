@@ -1,7 +1,99 @@
-import { useId, useState, type CSSProperties } from 'react';
+import {
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react';
 import type { ProjectProcessData } from '../data/types';
 import { siteText } from '../data/siteText';
 import './ProjectProcess.css';
+
+
+function AnimatedHeight({ children }: { children: ReactNode }) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const element = contentRef.current;
+    if (!element) return;
+
+    const updateHeight = () => {
+      const nextHeight = element.getBoundingClientRect().height;
+
+      setHeight(previous =>
+        previous !== null && Math.abs(previous - nextHeight) < 0.5
+          ? previous
+          : nextHeight
+      );
+    };
+
+    updateHeight();
+
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      className="process-auto-height"
+      style={height === null ? undefined : { height: `${height}px` }}
+    >
+      <div ref={contentRef}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+function AnimatedProcessText({
+  step,
+}: {
+  step?: ProjectProcessData['steps'][number];
+}) {
+  const [rendered, setRendered] = useState(step);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    if (!step) return;
+
+    if (rendered?.id === step.id) {
+      setVisible(true);
+      return;
+    }
+
+    if (!rendered) {
+      setRendered(step);
+      setVisible(true);
+      return;
+    }
+
+    // Сначала плавно скрываем прежнее описание
+    setVisible(false);
+
+    const timer = window.setTimeout(() => {
+      // Затем подменяем текст и проявляем новый
+      setRendered(step);
+      setVisible(true);
+    }, 180);
+
+    return () => window.clearTimeout(timer);
+  }, [step, rendered]);
+
+  if (!rendered) return null;
+
+  return (
+    <p className={`process-description${visible ? ' is-visible' : ''}`}>
+      {rendered.description}
+    </p>
+  );
+}
+
 
 export function ProjectProcess({ data, headingLevel = 3 }: {
   data: ProjectProcessData;
@@ -9,7 +101,13 @@ export function ProjectProcess({ data, headingLevel = 3 }: {
 }) {
   const id = useId();
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [lastOpenedId, setLastOpenedId] = useState<string | null>(null);
+
   const active = data.steps.find(step => step.id === activeId);
+
+  const displayed = data.steps.find(
+    step => step.id === (activeId ?? lastOpenedId)
+  );
   const activeIndex = active ? data.steps.indexOf(active) : -1;
   const Heading = `h${headingLevel}` as 'h3' | 'h4' | 'h5';
   const text = siteText.projectProcess;
@@ -66,19 +164,43 @@ export function ProjectProcess({ data, headingLevel = 3 }: {
         {data.steps.map((step, index) => <li key={step.id}>
           <button type="button" className="process-step" id={`${id}-step-${index}`}
             aria-expanded={active?.id === step.id} aria-controls={`${id}-panel`}
-            onClick={() => setActiveId(current => current === step.id ? null : step.id)}>
+            onClick={() => {
+              if (activeId === step.id) {
+                setActiveId(null);
+              } else {
+                setLastOpenedId(step.id);
+                setActiveId(step.id);
+              }
+            }}>
             <span className="process-number">{String(index + 1).padStart(2, '0')}</span>
             <span className="process-step-name">{step.title}</span>
             <svg className="process-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
           </button>
         </li>)}
       </ol>
-      <div id={`${id}-panel`} className="process-panel" role="region" hidden={!active}
-        aria-labelledby={active ? `${id}-step-${activeIndex}` : undefined}>
-        <div aria-live="polite" aria-atomic="true">
-          {active && <p key={active.id}>{active.description}</p>}
+      
+      <div
+        id={`${id}-panel`}
+        className={`process-panel${active ? ' is-open' : ''}`}
+        role="region"
+        aria-hidden={!active}
+        aria-labelledby={
+          active ? `${id}-step-${activeIndex}` : undefined
+        }
+      >
+        <div className="process-panel-clip">
+          <div
+            className="process-panel-content"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <AnimatedHeight>
+              <AnimatedProcessText step={displayed} />
+            </AnimatedHeight>
+          </div>
         </div>
       </div>
+
     </>}
 
   </section>;

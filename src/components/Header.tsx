@@ -30,8 +30,7 @@ useEffect(() => {
   const waveWidth = 160;
   const scrollFactor = 0.18;
   const dividerSelector =
-    '.about-section, .areas article, .project, .art-category, footer';
-
+  '.about-section, .areas, .areas article, .contact-section, .project, .art-category, footer';
   type DividerNode = {
     pattern: SVGPatternElement;
     path: SVGPathElement;

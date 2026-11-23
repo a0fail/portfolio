@@ -25,7 +25,10 @@
   border-radius: 50%; background: var(--sage); color: var(--bg);
   font-size: var(--text-work-title); font-weight: 600; font-variant-numeric: tabular-nums;
   outline: 1px solid transparent; outline-offset: 4px;
-  transition: transform 180ms ease, outline-color 180ms ease;
+  transition: transform 180ms ease
+  /* , 
+  outline-color 180ms ease */
+  ;
 }
 .process-step-name { width: 100%; text-align: center; text-wrap: balance; overflow-wrap: anywhere; }
 .process-chevron {
@@ -41,8 +44,45 @@
   .process-step:hover { color: var(--sage); }
   .process-step:hover .process-number { transform: translateY(-2px); }
 }
-.process-panel { margin-top: 20px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
-.process-panel[hidden] { display: none; }
+
+/* Плавное раскрытие с изменением высоты */
+
+.process-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+
+  transition:
+    grid-template-rows 420ms cubic-bezier(.2, .7, .2, 1),
+    margin-top 420ms cubic-bezier(.2, .7, .2, 1),
+    opacity 300ms ease;
+}
+
+.process-panel.is-open {
+  grid-template-rows: 1fr;
+  margin-top: 20px;
+  opacity: 1;
+}
+
+.process-panel-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.process-panel-content {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+/* Чуть более плавное появление текста */
+
+.process-panel p {
+  animation: process-text-in 260ms ease both;
+}
+
 .process-panel p, .process-ai dd, .process-ai p {
   margin: 0; max-width: var(--text-measure); font-size: var(--text-body); line-height: var(--leading-body);
   color: var(--muted); white-space: pre-line; text-wrap: pretty; overflow-wrap: anywhere;
@@ -139,6 +179,8 @@
 
   .process-panel {
     margin-top: 16px;
+  }
+  .process-panel-content {
     padding: 16px;
   }
 
@@ -159,4 +201,101 @@
 .process-ai {
   margin-top: 0;
   margin-bottom: 24px;
+}
+
+.process-number {
+  position: relative;
+}
+
+.process-number::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+
+  border: 2px solid var(--sage);
+  border-radius: 50%;
+
+  opacity: 0;
+  transform: scale(.82);
+
+  transition:
+    opacity 280ms ease,
+    transform 280ms cubic-bezier(.2, .7, .2, 1);
+
+  pointer-events: none;
+}
+
+.process-step[aria-expanded="true"] .process-number::after,
+.process-step:focus-visible .process-number::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+.process-panel p {
+  animation: process-text-in 260ms ease both;
+}
+
+@keyframes process-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes process-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.process-panel {
+  width: 100%;
+}
+
+.process-panel p {
+  width: 100%;
+  max-width: none;
+}
+
+
+/* Плавная смена описаний внутри раскрытой панели */
+
+.process-panel .process-description {
+  opacity: 0;
+  transform: translateY(3px);
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+
+  animation: none;
+}
+
+.process-panel .process-description.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition-duration: 260ms;
+}
+
+
+/* Плавное изменение высоты при переключении этапов */
+
+.process-auto-height {
+  min-width: 0;
+  overflow: hidden;
+
+  transition: height 380ms cubic-bezier(.2, .7, .2, 1);
 }
