@@ -1446,3 +1446,59 @@ footer {
     padding-bottom: 64px;
   }
 }
+
+
+/* ==========================================
+   Remove redundant process headings
+   ========================================== */
+
+/* Редизайн Профкома */
+main > .project:has(> .comparisons.redesign-grid)
+> .project-process > .process-heading,
+
+/* День факультета и футболки 2025/2026 */
+main .art-category:is(
+  [data-category="faculty-day-2026"],
+  [data-category="trip-2025"],
+  [data-category="trip-2026"]
+) > .project-process > .process-heading {
+  display: none;
+}
+
+/* Убираем старое расстояние под описанием */
+main > .project:has(> .comparisons.redesign-grid)
+> p:not(.eyebrow) {
+  margin-bottom: 0;
+}
+
+main .art-category:is(
+  [data-category="faculty-day-2026"],
+  [data-category="trip-2025"],
+  [data-category="trip-2026"]
+) > .category-heading {
+  margin-bottom: 0;
+}
+
+/* Описание -> использование ИИ: 24px */
+main > .project:has(> .comparisons.redesign-grid)
+> .project-process,
+
+main .art-category:is(
+  [data-category="faculty-day-2026"],
+  [data-category="trip-2025"],
+  [data-category="trip-2026"]
+) > .project-process {
+  margin-top: 24px;
+}
+
+/* Убираем дополнительный отступ самой ремарки */
+main > .project:has(> .comparisons.redesign-grid)
+> .project-process > .process-ai,
+
+main .art-category:is(
+  [data-category="faculty-day-2026"],
+  [data-category="trip-2025"],
+  [data-category="trip-2026"]
+) > .project-process > .process-ai {
+  margin-top: 0;
+}
