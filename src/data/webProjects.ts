@@ -3,7 +3,7 @@ import type { Game } from './types';
 const papersDetails = [
   {
     "title": "Об игре",
-    "text": "Каждый игровой день приносит новые требования и поводы вернуться завтра. Твоя задача — пройти визовый квест, несмотря на бюрократические препятствия."
+    "text": "Каждый игровой день приносит новые требования и поводы вернуться завтра. Твоя задача - пройти визовый квест, несмотря на бюрократические препятствия."
   },
   {
     "title": "Механики",
@@ -13,15 +13,15 @@ const papersDetails = [
 const sectorDetails = [
   {
     "title": "Об игре",
-    "text": "Шутер от первого лица внутри заражённого сервера. Название отсылает к HTTP 503 — Service Unavailable."
+    "text": "Шутер от первого лица внутри заражённого сервера. Название отсылает к HTTP 503 - Service Unavailable."
   },
   {
     "title": "Механики",
-    "text": "Лабиринт с миникартой, стрельба и три типа вирусов: Worm, Trojan и Cypher. Разрушаемые стены скрывают секретные комнаты, аптечки восстанавливают защиту. Улучшения и финальный босс — на пути к выходу из заражённого сервера."
+    "text": "Лабиринт с миникартой, стрельба и три типа вирусов: Worm, Trojan и Cypher. Разрушаемые стены скрывают секретные комнаты, аптечки восстанавливают защиту. Улучшения и финальный босс - на пути к выходу из заражённого сервера."
   }
 ];
 export const games: Game[] = [
-  { id: 'accept-papers', workflow: papersProcess, detailsTitle: 'Об игре и механиках', title: 'Accept Papers, Please', description: 'Симулятор бюрократического ада по мотивам Papers, Please.\nТри дня по эту сторону стекла визового центра. Переживи бесконечные требования, справки и очереди — и попробуй получить визу', tags: ['Browser game', 'Жанр: симулятор бюрократии'], images: [
+  { id: 'accept-papers', workflow: papersProcess, detailsTitle: 'Об игре и механиках', title: 'Accept Papers, Please', description: 'Симулятор бюрократического ада по мотивам Papers, Please.\nТри дня по эту сторону стекла визового центра. Переживи бесконечные требования, справки и очереди - и попробуй получить визу!', tags: ['Browser game', 'Жанр: симулятор бюрократии'], images: [
   {
     "id": "papers",
     "src": "assets/games/accept-papers/papers.gif",
@@ -59,7 +59,7 @@ export const games: Game[] = [
     }
   ]
 }, details: papersDetails, playUrl: 'https://a0fail.github.io/accept-papers-please/' },
-  { id: 'sector-503', workflow: sectorProcess, detailsTitle: 'Об игре и механиках', title: 'Sector 503', description: 'Ретро-шутер в оболочке Game Boy Advance, вдохновлённый Doom и Wolfenstein 3D.\nОсвободи сервер от вирусной деспотии — во имя материнской платы, оперативки и святой видюхи!', tags: ['Browser game', 'Жанр: Ретро-шутер'], images: [
+  { id: 'sector-503', workflow: sectorProcess, detailsTitle: 'Об игре и механиках', title: 'Sector 503', description: 'Ретро-шутер в оболочке Game Boy Advance, вдохновлённый Doom и Wolfenstein 3D.\nОсвободи сервер от вирусной деспотии - во имя материнской платы, оперативки и святой видюхи!', tags: ['Browser game', 'Жанр: Ретро-шутер'], images: [
   {
     "id": "sector",
     "src": "assets/games/sector-503/sector.webp",
